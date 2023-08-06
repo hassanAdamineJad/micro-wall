@@ -1,5 +1,5 @@
 import React from "react";
-import {Container} from "react-bootstrap";
+import {Container, Stack} from "react-bootstrap";
 
 interface RootPageProps {
   children: React.ReactNode;
@@ -9,8 +9,10 @@ interface RootPageProps {
 function RootPage({children, header}: RootPageProps): JSX.Element {
   return (
     <Container className="my-4">
-      <h1>{header}</h1>
-      {children}
+      <Stack gap={3}>
+        <h1>{header}</h1>
+        {children}
+      </Stack>
     </Container>
   );
 }

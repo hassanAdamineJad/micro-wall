@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+
+.float-button {
+  position: fixed;
+  right: 20%;
+  bottom: 2em;
+}
+
+.dropdown-divider{
+  height:1px !important;
+}

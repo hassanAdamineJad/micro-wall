@@ -21,6 +21,8 @@
     "prettier/prettier": "warn",
     "@typescript-eslint/triple-slash-reference": "off",
     "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }
