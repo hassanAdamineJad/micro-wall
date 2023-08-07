@@ -3,10 +3,10 @@ import RootPage from "../root";
 import {BlockForm} from "../../components/BlockForm";
 import {type IBlock} from "../../types/block";
 import {v4 as uuidV4} from "uuid";
-import {BlocksContext} from "../../context/BlockContext";
+import {Context} from "../../context/Context";
 
 export function CreatePage(): JSX.Element {
-  const {setBlock} = useContext(BlocksContext);
+  const {setBlock} = useContext(Context);
 
   const onCreateBlock = (data: IBlock): void => {
     setBlock(prevBlocks => {

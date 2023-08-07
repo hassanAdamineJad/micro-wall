@@ -10,7 +10,6 @@ export function Block({
 }): JSX.Element {
   const block = useBlock();
   const navigate = useNavigate();
-  console.log({block});
 
   return (
     <>

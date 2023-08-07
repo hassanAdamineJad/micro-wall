@@ -1,17 +1,17 @@
 import React, {useContext} from "react";
-import RootPage from "../root";
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {Context} from "../../context/Context";
+import RootPage from "../root";
 import {BlockCard} from "../../components/BlockCard";
-import {BlocksContext} from "../../context/BlockContext";
 
-export function EditorPage(): JSX.Element {
-  const {blocks} = useContext(BlocksContext);
+export function HomePage(): JSX.Element {
+  const {blocks} = useContext(Context);
 
   return (
     <>
-      <RootPage header="Editor">
-        <Link to={`/editor/new`}>
+      <RootPage header="Home">
+        <Link to={`/new`}>
           <Button variant="primary" size="lg" className="float-button">
             Add Block
           </Button>

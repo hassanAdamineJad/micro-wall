@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
 import RootPage from "../root";
 import {Block} from "../../components/Block";
-import {BlocksContext} from "../../context/BlockContext";
+import {Context} from "../../context/Context";
 
 export function BlockPage(): JSX.Element {
-  const {setBlock} = useContext(BlocksContext);
+  const {setBlock} = useContext(Context);
 
   const onDeleteBlock = (id: string): void => {
     setBlock(prevBlock => {
