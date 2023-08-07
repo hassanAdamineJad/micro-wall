@@ -1,15 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import RootPage from "../root";
 import {BlockForm} from "../../components/BlockForm";
-import {type IRowBlock, type IBlock} from "../../types/block";
-import {useLocalStorage} from "../../hooks/useLocalStorage";
+import {type IBlock} from "../../types/block";
 import {v4 as uuidV4} from "uuid";
+import {BlocksContext} from "../../context/BlockContext";
 
 export function CreatePage(): JSX.Element {
-  const [blocks, setBlocks] = useLocalStorage<IRowBlock[]>("BLOCKS", []);
+  const {setBlock} = useContext(BlocksContext);
 
   const onCreateBlock = (data: IBlock): void => {
-    setBlocks(prevBlocks => {
+    setBlock(prevBlocks => {
       return [...prevBlocks, {...data, id: uuidV4()}];
     });
   };

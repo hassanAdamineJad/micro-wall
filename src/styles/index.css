@@ -18,6 +18,7 @@ code {
   position: fixed;
   right: 20%;
   bottom: 2em;
+  z-index: 10;
 }
 
 .dropdown-divider{

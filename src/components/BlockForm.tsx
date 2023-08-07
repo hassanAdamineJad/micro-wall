@@ -32,12 +32,10 @@ export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
-    console.log(e.currentTarget);
     onSubmit({
       name: titleRef.current!.value,
       items,
     });
-
     //  Back to main page
     navigation("..");
   };
@@ -58,7 +56,6 @@ export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
     const {target} = e;
     const value = (target as HTMLButtonElement).value;
     updateItemValue(id, value);
-    console.log((target as HTMLButtonElement).value);
   };
 
   return (

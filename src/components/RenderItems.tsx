@@ -28,7 +28,7 @@ export function RenderItems({
 
         return (
           <>
-            <Col xs={10} key={key}>
+            <Col xs={10} key={id}>
               {hasMarkUp ? (
                 <FormGroup className="mb-3" controlId={name}>
                   <FormLabel>{label}</FormLabel>
