@@ -2,6 +2,7 @@ import React, {useRef, type FormEvent} from "react";
 import {Button, Form, Stack} from "react-bootstrap";
 import {ItemTypesEnum} from "../types/enums/itemTypes";
 import {type ItemFormProps} from "../types/components/ItemForm";
+import {v4 as uuidV4} from "uuid";
 
 export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -12,9 +13,11 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
     e.preventDefault();
 
     onSubmit({
+      id: uuidV4(),
       name: nameRef.current!.value,
       label: labelRef.current!.value,
       type: typeRef.current!.value,
+      value: "",
     });
   };
 

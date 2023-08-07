@@ -1,9 +1,10 @@
 import React, {type FormEvent, useState, useRef} from "react";
 import {Offcanvas, Col, Row, Stack, Form, Button} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
-import {ItemForm} from "./itemForm";
+import {ItemForm} from "./ItemForm";
 import {type IItem} from "../types/item";
 import {type IBlockFormProps} from "../types/components/blockForm";
+import {RenderItems} from "./RenderItems";
 
 export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
   const navigation = useNavigate();
@@ -23,36 +24,69 @@ export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
     handleCloseAddItem();
   };
 
-  function handleSubmit(e: FormEvent): void {
+  const handleRemoveItem = (id: string): void => {
+    setItems(prevItems => {
+      return prevItems.filter(item => item.id !== id);
+    });
+  };
+
+  const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
+    console.log(e.currentTarget);
     onSubmit({
       name: titleRef.current!.value,
       items,
     });
 
-    // Back to main page
+    //  Back to main page
     navigation("..");
-  }
+  };
+
+  const updateItemValue = (id: string, value: string): void => {
+    setItems(prevItems => {
+      return prevItems.map(item => {
+        if (item.id === id) {
+          return {...item, value};
+        } else {
+          return item;
+        }
+      });
+    });
+  };
+
+  const handleChange = (e: Event, id: string): void => {
+    const {target} = e;
+    const value = (target as HTMLButtonElement).value;
+    updateItemValue(id, value);
+    console.log((target as HTMLButtonElement).value);
+  };
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
         <Stack gap={5}>
-          <Row xs={1}>
-            <Col>
+          <Row>
+            <Col xs={12} md={6}>
               <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control ref={titleRef} required />
               </Form.Group>
             </Col>
-            <div className="dropdown-divider bg-secondary"></div>
-            <Col>render Items</Col>
-            <Col>
+            <Col xs={12}>
+              <div className="dropdown-divider bg-secondary"></div>
+            </Col>
+            <Col xs={12} md={6} className="mt-3">
+              <RenderItems
+                items={items}
+                handleChange={handleChange}
+                handleRemoveItem={handleRemoveItem}
+              />
+            </Col>
+            <Col xs={12}>
               <Button
                 type="button"
                 onClick={handleShowAddItem}
-                variant="outline-secondary"
-                className="mt-4">
+                variant="outline-secondary">
                 Add Item +
               </Button>
             </Col>
