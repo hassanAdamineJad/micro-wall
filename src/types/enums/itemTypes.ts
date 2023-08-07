@@ -1,4 +1,4 @@
-export enum ItemTypes {
+export enum ItemTypesEnum {
   INPUT = "input",
   MARKUP = "markup",
   CALENDER = "calender",

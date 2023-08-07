@@ -1,5 +1,5 @@
-import {type Item} from "../item";
+import {type IItem} from "../item";
 
 export interface ItemFormProps {
-  onSubmit: (a: Item) => void;
+  onSubmit: (a: IItem) => void;
 }

@@ -1,12 +1,14 @@
 import React, {type FormEvent, useState, useRef} from "react";
 import {Offcanvas, Col, Row, Stack, Form, Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ItemForm} from "./itemForm";
-import {type Item} from "../types/item";
+import {type IItem} from "../types/item";
+import {type IBlockFormProps} from "../types/components/blockForm";
 
-export function BlockForm(): JSX.Element {
+export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
+  const navigation = useNavigate();
   const [showAddItem, setShowAddItem] = useState(false);
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<IItem[]>([]);
   const titleRef = useRef<HTMLInputElement>(null);
 
   const handleCloseAddItem = (): void => {
@@ -16,14 +18,21 @@ export function BlockForm(): JSX.Element {
     setShowAddItem(true);
   };
 
-  const handleItems = (item: Item): void => {
+  const handleSubmitItems = (item: IItem): void => {
     setItems(prev => [...prev, item]);
     handleCloseAddItem();
   };
 
-  console.log(items);
+  function handleSubmit(e: FormEvent): void {
+    e.preventDefault();
+    onSubmit({
+      name: titleRef.current!.value,
+      items,
+    });
 
-  function handleSubmit(e: FormEvent): void {}
+    // Back to main page
+    navigation("..");
+  }
 
   return (
     <>
@@ -67,7 +76,7 @@ export function BlockForm(): JSX.Element {
           <Offcanvas.Title>Add Item</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <ItemForm onSubmit={handleItems} />
+          <ItemForm onSubmit={handleSubmitItems} />
         </Offcanvas.Body>
       </Offcanvas>
     </>

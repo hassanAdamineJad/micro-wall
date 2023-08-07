@@ -1,6 +1,6 @@
 import React, {useRef, type FormEvent} from "react";
 import {Button, Form, Stack} from "react-bootstrap";
-import {ItemTypes} from "../types/enums/itemTypes";
+import {ItemTypesEnum} from "../types/enums/itemTypes";
 import {type ItemFormProps} from "../types/components/ItemForm";
 
 export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
@@ -10,11 +10,7 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
-    console.log(
-      nameRef.current!.value,
-      labelRef.current!.value,
-      typeRef.current!.value,
-    );
+
     onSubmit({
       name: nameRef.current!.value,
       label: labelRef.current!.value,
@@ -39,7 +35,7 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
           <Form.Select aria-label="Default select example" ref={typeRef}>
             <option>Select Type</option>
 
-            {Object.values(ItemTypes).map((type, key) => {
+            {Object.values(ItemTypesEnum).map((type, key) => {
               return (
                 <option key={key} value={type}>
                   {type}
