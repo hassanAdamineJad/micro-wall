@@ -34,8 +34,6 @@ export function Block({
           </Stack>
         </Col>
       </Row>
-
-      {/* <ReactMarkdown>{block.markdown}</ReactMarkdown>  */}
     </>
   );
 }

@@ -1,55 +1,42 @@
 import React from "react";
-import {
-  Col,
-  Row,
-  FormGroup,
-  FormLabel,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import {Col, Row, Button} from "react-bootstrap";
 import {type IItem} from "../types/item";
-import {ItemTypesEnum} from "../types/enums/itemTypes";
+import {TextInput} from "./inputs/Text";
+import {RangeInput} from "./inputs/Range";
+import {Text} from "./presentations/Text";
+import {Image} from "./presentations/Image";
+import {Markdown} from "./presentations/MarkDown";
+
+interface RenderItemsProps {
+  items: IItem[];
+  handleChange: (e: any, id: string) => void;
+  handleRemoveItem: (id: string) => void;
+}
+
+const components: any = {
+  textInput: TextInput,
+  range: RangeInput,
+  text: Text,
+  image: Image,
+  Markdown,
+};
 
 export function RenderItems({
   items,
   handleChange,
   handleRemoveItem,
-}: {
-  items: IItem[];
-  handleChange: any;
-  handleRemoveItem: (id: string) => void;
-}): JSX.Element {
+}: RenderItemsProps): JSX.Element {
   return (
     <Row>
       {items.map((item: IItem, key) => {
-        const {id, label, name, type, value} = item;
-        const hasMarkUp = type === ItemTypesEnum.MARKUP;
-        const hasImage = type === ItemTypesEnum.IMAGE;
+        const {id, type} = item;
+
+        const Component = components[type];
 
         return (
           <>
             <Col xs={10} key={id}>
-              {hasMarkUp ? (
-                <FormGroup className="mb-3" controlId={name}>
-                  <FormLabel>{label}</FormLabel>
-                  <FormControl
-                    as="textarea"
-                    rows={15}
-                    onChange={e => handleChange(e, id)}
-                    defaultValue={value}
-                  />
-                </FormGroup>
-              ) : (
-                <FormGroup className="mb-3" controlId={name}>
-                  <FormLabel>{label}</FormLabel>
-                  <FormControl
-                    type="text"
-                    placeholder={hasImage ? "Image URL" : ""}
-                    onChange={e => handleChange(e, name, key)}
-                    defaultValue={value}
-                  />
-                </FormGroup>
-              )}
+              <Component item={item} />
             </Col>
             <Col xs="auto" className="mt-3 align-self-center">
               <Button

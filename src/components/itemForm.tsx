@@ -1,6 +1,9 @@
 import React, {useRef, type FormEvent} from "react";
 import {Button, Form, Stack} from "react-bootstrap";
-import {ItemTypesEnum} from "../types/enums/itemTypes";
+import {
+  ItemInputTypesEnum,
+  ItemPresentingTypesEnum,
+} from "../types/enums/itemTypes";
 import {type ItemFormProps} from "../types/components/ItemForm";
 import {v4 as uuidV4} from "uuid";
 
@@ -8,6 +11,7 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
   const nameRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLInputElement>(null);
   const typeRef = useRef<HTMLSelectElement>(null);
+  const valueRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
@@ -17,7 +21,7 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
       name: nameRef.current!.value,
       label: labelRef.current!.value,
       type: typeRef.current!.value,
-      value: "",
+      value: valueRef.current!.value,
     });
   };
 
@@ -33,12 +37,15 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
           <Form.Control required ref={labelRef} />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="label">
+        <Form.Group className="mb-3" controlId="type">
           <Form.Label>Type</Form.Label>
           <Form.Select aria-label="Default select example" ref={typeRef}>
             <option>Select Type</option>
 
-            {Object.values(ItemTypesEnum).map((type, key) => {
+            {Object.values({
+              ...ItemPresentingTypesEnum,
+              ...ItemInputTypesEnum,
+            }).map((type, key) => {
               return (
                 <option key={key} value={type}>
                   {type}
@@ -46,6 +53,11 @@ export function ItemForm({onSubmit}: ItemFormProps): JSX.Element {
               );
             })}
           </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="value">
+          <Form.Label>Default Value</Form.Label>
+          <Form.Control ref={valueRef} />
         </Form.Group>
 
         <Button type="submit" variant="primary">
