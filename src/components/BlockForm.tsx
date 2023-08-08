@@ -3,8 +3,12 @@ import {Offcanvas, Col, Row, Stack, Form, Button} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 import {ItemForm} from "./ItemForm";
 import {type IItem} from "../types/item";
-import {type IBlockFormProps} from "../types/components/blockForm";
 import {RenderItems} from "./RenderItems";
+import {type IBlock} from "../types/block";
+
+interface IBlockFormProps {
+  onSubmit: (a: IBlock) => void;
+}
 
 export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
   const navigation = useNavigate();
@@ -40,24 +44,6 @@ export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
     navigation("..");
   };
 
-  const updateItemValue = (id: string, value: string): void => {
-    setItems(prevItems => {
-      return prevItems.map(item => {
-        if (item.id === id) {
-          return {...item, value};
-        } else {
-          return item;
-        }
-      });
-    });
-  };
-
-  const handleChange = (e: Event, id: string): void => {
-    const {target} = e;
-    const value = (target as HTMLButtonElement).value;
-    updateItemValue(id, value);
-  };
-
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -75,7 +61,7 @@ export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
             <Col xs={12} md={6} className="mt-3">
               <RenderItems
                 items={items}
-                handleChange={handleChange}
+                handleChange={setItems}
                 handleRemoveItem={handleRemoveItem}
               />
             </Col>

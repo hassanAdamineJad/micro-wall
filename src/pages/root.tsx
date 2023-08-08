@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
-import {ButtonGroup, Container, Stack, ToggleButton} from "react-bootstrap";
+import {Container, Stack} from "react-bootstrap";
 import {Context} from "../context/Context";
+import {Header} from "../components/Header";
 
 interface RootPageProps {
   children: React.ReactNode;
@@ -8,36 +9,14 @@ interface RootPageProps {
 }
 
 function RootPage({children, header}: RootPageProps): JSX.Element {
-  const {mode, setMode} = useContext(Context);
+  const {mode, setMode, blocks} = useContext(Context);
+
   return (
     <Container className="my-4">
       <Stack gap={3}>
-        <Stack
-          gap={1}
-          direction="horizontal"
-          className="justify-content-between">
-          <h1>{header}</h1>
-          <ButtonGroup className="mb-2">
-            {[
-              {name: "Editor", value: "editor"},
-              {name: "Viewer", value: "viewer"},
-            ].map((radio, idx) => (
-              <ToggleButton
-                key={idx}
-                id={`radio-${idx}`}
-                type="radio"
-                variant={idx % 2 ? "outline-success" : "outline-secondary"}
-                name="radio"
-                value={radio.value}
-                checked={mode === radio.value}
-                onChange={e => {
-                  setMode(e.currentTarget.value);
-                }}>
-                {radio.name}
-              </ToggleButton>
-            ))}
-          </ButtonGroup>
-        </Stack>
+        <Header mode={mode} setMode={setMode} header={header} blocks={blocks} />
+
+        <div className="dropdown-divider bg-secondary"></div>
 
         {children}
       </Stack>

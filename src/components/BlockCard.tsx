@@ -7,6 +7,7 @@ export function BlockCard({data}: {data: IRowBlock}): JSX.Element {
   return (
     <Card
       as={Link}
+      id={`${data.id}`}
       to={`/${data.id}`}
       className={`h-100 text-reset text-decoration-none `}>
       <Card.Body>

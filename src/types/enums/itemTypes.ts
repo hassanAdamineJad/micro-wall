@@ -1,11 +1,10 @@
 export enum ItemPresentingTypesEnum {
   TEXT = "text",
-  MARKUP = "markup",
+  MARKDOWN = "markdown",
   IMAGE = "image",
 }
 
 export enum ItemInputTypesEnum {
   TEXTINPUT = "textInput",
   RANGEINPUT = "range",
-  CALENDAR = "Calendar",
 }

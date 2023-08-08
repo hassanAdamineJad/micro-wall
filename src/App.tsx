@@ -1,17 +1,18 @@
 import React, {Suspense, useState} from "react";
-
 import {AppRoutes} from "./routes";
-import {ErrorBoundary} from "react-error-boundary";
 import {BrowserRouter} from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/base/App.css";
+import {Context} from "./context/Context";
+import {ErrorBoundary} from "react-error-boundary";
+import {MODE_TYPE} from "./types/enums/mode";
 import {type IRowBlock} from "./types/block";
 import {useLocalStorage} from "./hooks/useLocalStorage";
-import {Context} from "./context/Context";
+
+import "./styles/base/App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App(): JSX.Element {
   const [blocks, setBlock] = useLocalStorage<IRowBlock[]>("BLOCKS", []);
-  const [mode, setMode] = useState("editor");
+  const [mode, setMode] = useState(MODE_TYPE.EDITOR);
 
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
