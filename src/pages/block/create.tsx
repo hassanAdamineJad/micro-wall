@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import RootPage from "../root";
-import {BlockForm} from "../../components/BlockForm";
+import {CreateForm} from "../../components/CreateForm";
 import {type IBlock} from "../../types/block";
 import {v4 as uuidV4} from "uuid";
 import {Context} from "../../context/Context";
@@ -26,7 +26,7 @@ export function CreatePage(): JSX.Element {
   return (
     <>
       <RootPage header="New BLock">
-        <BlockForm onSubmit={onCreateBlock} />
+        <CreateForm onSubmit={onCreateBlock} />
       </RootPage>
     </>
   );

@@ -10,7 +10,7 @@ interface IBlockFormProps {
   onSubmit: (a: IBlock) => void;
 }
 
-export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
+export function CreateForm({onSubmit}: IBlockFormProps): JSX.Element {
   const navigation = useNavigate();
   const [showAddItem, setShowAddItem] = useState(false);
   const [items, setItems] = useState<IItem[]>([]);
@@ -49,14 +49,14 @@ export function BlockForm({onSubmit}: IBlockFormProps): JSX.Element {
       <Form onSubmit={handleSubmit}>
         <Stack gap={5}>
           <Row>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={4}>
               <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control ref={titleRef} required />
               </Form.Group>
             </Col>
-            <Col xs={12}>
-              <div className="dropdown-divider bg-secondary"></div>
+            <Col xs={9}>
+              <div className="dropdown-divider bg-info"></div>
             </Col>
             <Col xs={12} md={6} className="mt-3">
               <RenderItems

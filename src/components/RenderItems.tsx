@@ -46,18 +46,18 @@ export function RenderItems({
   };
 
   return (
-    <Row>
+    <>
       {items.map((item: IItem, key) => {
         const {id, type} = item;
 
         const Component = components[type];
 
         return (
-          <div key={id}>
-            <Col xs={10}>
+          <Row key={id}>
+            <Col xs={8}>
               <Component item={item} handleChange={handleChangeInput} />
             </Col>
-            <Col xs="auto" className="mt-3 align-self-center">
+            <Col xs={2} className="mt-3 align-self-center">
               {handleRemoveItem ? (
                 <Button
                   variant="outline-danger"
@@ -70,9 +70,9 @@ export function RenderItems({
                 ""
               )}
             </Col>
-          </div>
+          </Row>
         );
       })}
-    </Row>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {BlockCard} from "../../components/BlockCard";
+import {BlockCard} from "../../components/Card";
 import {Button} from "react-bootstrap";
 import {Context} from "../../context/Context";
 import {Link} from "react-router-dom";
