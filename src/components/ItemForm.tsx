@@ -1,4 +1,4 @@
-import React, {useRef, type FormEvent, useEffect, useState} from "react";
+import React, {useRef, type FormEvent, useState} from "react";
 import {Button, Form, Stack} from "react-bootstrap";
 import {
   ItemInputTypesEnum,

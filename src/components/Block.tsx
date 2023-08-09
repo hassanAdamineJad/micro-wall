@@ -47,7 +47,7 @@ export function Block({
                   Delete
                 </Button>
               ) : (
-                <Button variant="outline-danger" type="submit">
+                <Button variant="success" type="submit">
                   Submit
                 </Button>
               )}

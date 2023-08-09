@@ -60,7 +60,7 @@ export function Header({
               key={idx}
               id={`radio-${idx}`}
               type="radio"
-              variant="outline-success"
+              variant="outline-info"
               name="radio"
               value={radio.value}
               checked={mode === radio.value}
